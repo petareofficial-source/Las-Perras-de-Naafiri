@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las Perras de Naafiri - Búsqueda de Invocadores</title>
+    <meta name="description" content="Busca estadísticas, historial de partidas y análisis de invocadores en League of Legends.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home-page">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="img/logo.png" alt="Logo" class="custom-logo">
+                    <img src="img/texto.png" alt="Las Perras de Naafiri" class="custom-logo-text">
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active">Inicio</a>
+                <a href="#">Campeones</a>
+                <a href="#">Tier List</a>
+                <a href="#">Estadísticas</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn-login"><i class="fa-solid fa-user"></i> Iniciar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="hero">
+        <div class="hero-content">
+            <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg" alt="Background" class="hero-bg">
+            <div class="hero-overlay"></div>
+            
+            <div class="search-section">
+                <h1 class="logo-large">
+                    <img src="img/logo.png" alt="Logo" class="custom-logo-large"> 
+                    <img src="img/texto.png" alt="Las Perras de Naafiri" class="custom-logo-text-large">
+                </h1>
+                
+                <form id="summoner-search-form" class="search-box">
+                    <div class="region-select-wrapper">
+                        <select id="region-select" class="region-select" aria-label="Seleccionar región">
+                            <option value="LA1">LAN</option>
+                            <option value="LA2">LAS</option>
+                            <option value="NA1">NA</option>
+                            <option value="EUW1">EUW</option>
+                            <option value="EUN1">EUNE</option>
+                            <option value="KR">KR</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                    <div class="input-divider"></div>
+                    <input 
+                        type="text" 
+                        id="summoner-input" 
+                        placeholder="Invocador #LAS" 
+                        required
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-btn" aria-label="Buscar invocador">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Las Perras de Naafiri no está respaldado por Riot Games y no refleja los puntos de vista u opiniones de Riot Games ni de nadie oficialmente involucrado en la producción o gestión de League of Legends.</p>
+            <p>League of Legends y Riot Games son marcas comerciales o marcas registradas de Riot Games, Inc. League of Legends © Riot Games, Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>

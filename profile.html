@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invocador #LAS - Perfil de Las Perras de Naafiri</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="profile-page">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Logo" class="custom-logo">
+                    <img src="img/texto.png" alt="Las Perras de Naafiri" class="custom-logo-text">
+                </a>
+            </div>
+            <div class="nav-search-mini">
+                <form id="mini-search-form" class="mini-search-box">
+                    <select class="mini-region-select">
+                        <option value="LAS">LAS</option>
+                        <option value="LAN">LAN</option>
+                        <option value="NA">NA</option>
+                    </select>
+                    <input type="text" placeholder="Buscar invocador..." class="mini-search-input">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="#">Campeones</a>
+                <a href="#">Estadísticas</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-main-content">
+        <!-- Summoner Header -->
+        <section class="summoner-header">
+            <div class="profile-container">
+                <div class="summoner-info-wrapper">
+                    <div class="summoner-icon-container">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/profileicon/6513.png" alt="Profile Icon" class="summoner-icon">
+                        <span class="summoner-level">245</span>
+                    </div>
+                    <div class="summoner-details">
+                        <div class="summoner-name-row">
+                            <h1 class="summoner-name">Las Perras de Naafiri</h1>
+                            <span class="summoner-tag">#LAS</span>
+                        </div>
+                        <div class="summoner-ladder">
+                            <span>Rank 152,431</span> (Top 8.4%)
+                        </div>
+                        <div class="summoner-actions">
+                            <button class="btn-update">Actualizar</button>
+                            <span class="last-updated">Actualizado hace 2 horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Grid -->
+        <div class="profile-container profile-grid">
+            
+            <!-- Left Column: Stats & Ranked -->
+            <aside class="profile-sidebar">
+                
+                <!-- Ranked Solo -->
+                <div class="stat-card ranked-card">
+                    <div class="ranked-header">Ranked Solo/Duo</div>
+                    <div class="ranked-content">
+                        <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/emerald.png" alt="Emerald" class="ranked-emblem">
+                        <div class="ranked-info">
+                            <div class="ranked-tier">Esmeralda IV</div>
+                            <div class="ranked-lp">75 LP</div>
+                        </div>
+                        <div class="ranked-winrate">
+                            <div class="win-loss">
+                                <span class="wins">124V</span> - <span class="losses">102D</span>
+                            </div>
+                            <div class="winrate-percent">55% Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ranked Flex -->
+                <div class="stat-card ranked-card">
+                    <div class="ranked-header">Ranked Flex</div>
+                    <div class="ranked-content">
+                        <img src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-shared-components/global/default/platinum.png" alt="Platinum" class="ranked-emblem">
+                        <div class="ranked-info">
+                            <div class="ranked-tier">Platino II</div>
+                            <div class="ranked-lp">12 LP</div>
+                        </div>
+                        <div class="ranked-winrate">
+                            <div class="win-loss">
+                                <span class="wins">45V</span> - <span class="losses">32D</span>
+                            </div>
+                            <div class="winrate-percent">58% Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Champions -->
+                <div class="stat-card champions-card">
+                    <div class="card-title">Campeones Más Jugados</div>
+                    <div class="champ-list">
+                        <div class="champ-item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Naafiri.png" alt="Naafiri">
+                            <div class="champ-info">
+                                <div class="champ-name">Naafiri</div>
+                                <div class="champ-kda">4.20:1 KDA <span class="muted">9.5/4.2/8.1</span></div>
+                            </div>
+                            <div class="champ-winrate">
+                                <div class="wr-text">65%</div>
+                                <div class="games-played">80 Partidas</div>
+                            </div>
+                        </div>
+                        <div class="champ-item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Aatrox.png" alt="Aatrox">
+                            <div class="champ-info">
+                                <div class="champ-name">Aatrox</div>
+                                <div class="champ-kda">2.80:1 KDA <span class="muted">7.1/5.5/8.3</span></div>
+                            </div>
+                            <div class="champ-winrate">
+                                <div class="wr-text">52%</div>
+                                <div class="games-played">45 Partidas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Column: Match History -->
+            <section class="profile-matches">
+                
+                <!-- Match Filters -->
+                <div class="match-filters stat-card">
+                    <button class="filter-btn active">Todas</button>
+                    <button class="filter-btn">Ranked Solo</button>
+                    <button class="filter-btn">Ranked Flex</button>
+                    <button class="filter-btn">Normal</button>
+                </div>
+
+                <!-- Match List -->
+                <div class="match-list">
+                    
+                    <!-- Match Card: WIN -->
+                    <div class="match-card win">
+                        <div class="match-decoration"></div>
+                        <div class="match-info">
+                            <div class="match-type">Clasificatoria Solo</div>
+                            <div class="match-time-ago">hace 3 horas</div>
+                            <div class="match-divider"></div>
+                            <div class="match-result-text">Victoria</div>
+                            <div class="match-duration">32:15</div>
+                        </div>
+                        
+                        <div class="match-player">
+                            <div class="player-champion">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Naafiri.png" alt="Naafiri" class="champ-icon">
+                                <div class="champ-level">16</div>
+                            </div>
+                            <div class="player-spells-runes">
+                                <div class="spells">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/spell/SummonerFlash.png" alt="Flash">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/spell/SummonerTeleport.png" alt="TP">
+                                </div>
+                                <div class="runes">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png" alt="Comet">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Resolve.png" alt="Resolve">
+                                </div>
+                            </div>
+                            <div class="player-kda-stats">
+                                <div class="kda">
+                                    <span class="kills">12</span> / <span class="deaths">3</span> / <span class="assists">8</span>
+                                </div>
+                                <div class="kda-ratio">6.67:1 KDA</div>
+                                <div class="cs-info">240 CS (7.4/m)</div>
+                            </div>
+                        </div>
+
+                        <div class="match-items">
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3142.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/6692.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3158.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/6694.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3026.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/1036.png" alt="Item"></div>
+                            <div class="item-slot trinket"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3340.png" alt="Trinket"></div>
+                        </div>
+
+                        <div class="match-participants">
+                            <div class="team blue-team">
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Aatrox.png" alt=""><span class="p-name">Top Laner</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/LeeSin.png" alt=""><span class="p-name">Jungle Main</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Naafiri.png" alt=""><span class="p-name bold">Invocador LAS</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Jinx.png" alt=""><span class="p-name">Adc Pro</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Lulu.png" alt=""><span class="p-name">Support God</span></div>
+                            </div>
+                            <div class="team red-team">
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Darius.png" alt=""><span class="p-name">Enemy Top</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Elise.png" alt=""><span class="p-name">Enemy Jg</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Ahri.png" alt=""><span class="p-name">Enemy Mid</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Lucian.png" alt=""><span class="p-name">Enemy Adc</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Nami.png" alt=""><span class="p-name">Enemy Sup</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match Card: LOSS -->
+                    <div class="match-card loss">
+                        <div class="match-decoration"></div>
+                        <div class="match-info">
+                            <div class="match-type">Clasificatoria Solo</div>
+                            <div class="match-time-ago">hace 5 horas</div>
+                            <div class="match-divider"></div>
+                            <div class="match-result-text">Derrota</div>
+                            <div class="match-duration">24:10</div>
+                        </div>
+                        
+                        <div class="match-player">
+                            <div class="player-champion">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Naafiri.png" alt="Naafiri" class="champ-icon">
+                                <div class="champ-level">13</div>
+                            </div>
+                            <div class="player-spells-runes">
+                                <div class="spells">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/spell/SummonerFlash.png" alt="Flash">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/spell/SummonerTeleport.png" alt="TP">
+                                </div>
+                                <div class="runes">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png" alt="Comet">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Resolve.png" alt="Resolve">
+                                </div>
+                            </div>
+                            <div class="player-kda-stats">
+                                <div class="kda">
+                                    <span class="kills">4</span> / <span class="deaths">6</span> / <span class="assists">2</span>
+                                </div>
+                                <div class="kda-ratio">1.00:1 KDA</div>
+                                <div class="cs-info">150 CS (6.2/m)</div>
+                            </div>
+                        </div>
+
+                        <div class="match-items">
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3142.png" alt="Item"></div>
+                            <div class="item-slot"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3158.png" alt="Item"></div>
+                            <div class="item-slot empty"></div>
+                            <div class="item-slot empty"></div>
+                            <div class="item-slot empty"></div>
+                            <div class="item-slot empty"></div>
+                            <div class="item-slot trinket"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/item/3340.png" alt="Trinket"></div>
+                        </div>
+
+                        <div class="match-participants">
+                            <div class="team blue-team">
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Aatrox.png" alt=""><span class="p-name">Top Laner</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/LeeSin.png" alt=""><span class="p-name">Jungle Main</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Naafiri.png" alt=""><span class="p-name bold">Invocador LAS</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Jinx.png" alt=""><span class="p-name">Adc Pro</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Lulu.png" alt=""><span class="p-name">Support God</span></div>
+                            </div>
+                            <div class="team red-team">
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Darius.png" alt=""><span class="p-name">Enemy Top</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Elise.png" alt=""><span class="p-name">Enemy Jg</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Ahri.png" alt=""><span class="p-name">Enemy Mid</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Lucian.png" alt=""><span class="p-name">Enemy Adc</span></div>
+                                <div class="participant"><img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/champion/Nami.png" alt=""><span class="p-name">Enemy Sup</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Las Perras de Naafiri no está respaldado por Riot Games y no refleja los puntos de vista u opiniones de Riot Games.</p>
+            <p>League of Legends y Riot Games son marcas registradas de Riot Games, Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js" type="module"></script>
+    <script src="js/profile.js" type="module"></script>
+</body>
+</html>
