@@ -1,10 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const mongoose = require('mongoose');
+const Summoner = require('./models/Summoner');
 require('dotenv').config();
 
 const app = express();
 const PORT = 3000;
+
+// CONFIGURACIÓN MONGODB
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/las-perras-de-naafiri";
+
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log('[DB] Conectado a MongoDB'))
+    .catch(err => console.error('[DB] Error de conexión:', err));
 
 // CONFIGURACIÓN: Pega aquí tu API Key de Riot Games
 const RIOT_API_KEY = process.env.RIOT_API_KEY || "RGAPI-2d49451d-667e-4ca4-80c2-4f8e4f968db6";
@@ -68,34 +77,68 @@ const getPlatformUrl = (region) => {
 };
 
 /**
- * ENDPOINT: Obtener invocador por Riot ID (Name #Tag)
+ * ENDPOINT: Obtener datos básicos del Invocador por Riot ID
  */
 app.get('/api/summoner/:region/:name/:tag', async (req, res) => {
     const { region, name, tag } = req.params;
-    const regionUrl = getRegionUrl(region);
+    const routingUrl = getRegionUrl(region);
     const platformUrl = getPlatformUrl(region);
 
     try {
-        // 1. Obtener PUUID desde Riot ID (Account-V1)
-        const accountUrl = `https://${regionUrl}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(name)}/${encodeURIComponent(tag)}?api_key=${RIOT_API_KEY}`;
-        const accountRes = await axios.get(accountUrl);
-        const { puuid, gameName, tagLine } = accountRes.data;
-
-        // 2. Obtener datos de Summoner (Summoner-V4) para el nivel e icono
-        const summonerUrl = `https://${platformUrl}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${RIOT_API_KEY}`;
-        const summonerRes = await axios.get(summonerUrl);
-
-        res.json({
-            puuid,
-            gameName,
-            tagLine,
-            summonerLevel: summonerRes.data.summonerLevel,
-            profileIconId: summonerRes.data.profileIconId,
-            id: summonerRes.data.id
+        // 1. Intentar buscar en la Base de Datos primero
+        const cachedSummoner = await Summoner.findOne({ 
+            gameName: new RegExp(`^${name}$`, 'i'), 
+            tagLine: new RegExp(`^${tag}$`, 'i'), 
+            region 
         });
+
+        const now = new Date();
+        const cacheTime = 10 * 60 * 1000; // 10 minutos
+
+        if (cachedSummoner && (now - cachedSummoner.lastUpdated < cacheTime)) {
+            console.log(`[Proxy] Sirviendo desde Caché (DB): ${name}#${tag}`);
+            return res.json(cachedSummoner);
+        }
+
+        // 2. Si no está en DB o es viejo, pedir a Riot Account-V1
+        console.log(`[Proxy] Pidiendo a Riot API: ${name}#${tag}`);
+        const accountUrl = `https://${routingUrl}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(name)}/${encodeURIComponent(tag)}?api_key=${RIOT_API_KEY}`;
+        const accountResponse = await axios.get(accountUrl);
+        const { puuid, gameName, tagLine } = accountResponse.data;
+
+        // 3. Obtener datos de nivel e icono de Summoner-V4
+        const summonerUrl = `https://${platformUrl}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${RIOT_API_KEY}`;
+        const summonerResponse = await axios.get(summonerUrl);
+        const { summonerLevel, profileIconId } = summonerResponse.data;
+
+        const finalData = { puuid, gameName, tagLine, summonerLevel, profileIconId, region, lastUpdated: new Date() };
+
+        // 4. Guardar o Actualizar en la Base de Datos
+        await Summoner.findOneAndUpdate(
+            { puuid },
+            finalData,
+            { upsert: true, new: true }
+        );
+
+        res.json(finalData);
     } catch (error) {
         console.error('Error en /summoner:', error.response?.data || error.message);
-        res.status(error.response?.status || 500).json({ error: 'No se encontró al invocador' });
+        if (error.response?.status === 404) {
+            return res.status(404).json({ error: 'No se encontró al invocador' });
+        }
+        res.status(500).json({ error: 'Error al obtener datos del invocador' });
+    }
+});
+
+/**
+ * ENDPOINT: Obtener búsquedas recientes
+ */
+app.get('/api/recent', async (req, res) => {
+    try {
+        const recent = await Summoner.find().sort({ lastUpdated: -1 }).limit(6);
+        res.json(recent);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener recientes' });
     }
 });
 

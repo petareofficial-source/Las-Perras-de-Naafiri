@@ -48,5 +48,40 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
         }
     });
+
+    // Cargar búsquedas recientes
+    loadRecentSearches();
 });
+
+async function loadRecentSearches() {
+    const recentList = document.getElementById('recent-list');
+    if (!recentList) return;
+
+    try {
+        const response = await fetch('/api/recent');
+        const data = await response.json();
+
+        if (data.length === 0) {
+            recentList.innerHTML = '<p class="no-recent">No hay búsquedas recientes.</p>';
+            return;
+        }
+
+        recentList.innerHTML = '';
+        data.forEach(s => {
+            const item = document.createElement('a');
+            item.className = 'recent-item animate-fade-in';
+            item.href = `profile.html?region=${s.region}&name=${encodeURIComponent(s.gameName)}&tag=${encodeURIComponent(s.tagLine)}`;
+            item.innerHTML = `
+                <img src="https://ddragon.leagueoflegends.com/cdn/14.8.1/img/profileicon/${s.profileIconId}.png" alt="icon">
+                <div class="recent-info">
+                    <span class="recent-name">${s.gameName}</span>
+                    <span class="recent-tag">#${s.tagLine}</span>
+                </div>
+            `;
+            recentList.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Error cargando recientes:', error);
+    }
+}
 

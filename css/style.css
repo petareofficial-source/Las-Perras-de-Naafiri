@@ -318,3 +318,73 @@ body {
         height: 50px;
     }
 }
+
+/* Recent Searches */
+.recent-searches-container {
+    margin-top: 40px;
+}
+
+.recent-searches-container h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.recent-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.recent-item {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all var(--transition-fast);
+    backdrop-filter: var(--glass-blur);
+    min-width: 180px;
+}
+
+.recent-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: var(--gold-glow);
+}
+
+.recent-item img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--primary);
+}
+
+.recent-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.recent-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.recent-tag {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.no-recent {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
