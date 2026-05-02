@@ -368,11 +368,20 @@
 
 .match-card {
     display: flex;
-    background: var(--bg-dark);
-    border-radius: 8px;
+    background: var(--bg-panel);
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
-    border-left: 6px solid transparent;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.match-card:hover {
+    transform: translateX(5px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .match-decoration {
@@ -386,27 +395,23 @@
 }
 
 .match-card.win {
-    background: #240b3c; /* Dark Purple-ish */
-    border-color: #8a2be2;
+    border-left: 6px solid #d4af37;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 0%, var(--bg-panel) 100%);
 }
-.match-card.win .match-decoration {
-    background: linear-gradient(90deg, #8a2be2 0%, transparent 100%);
-}
-.match-card.win .match-result-text {
-    color: #c084fc;
-    font-weight: 700;
+.match-card.win .match-result {
+    color: var(--primary);
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 .match-card.loss {
-    background: #2b1d20; /* Darker Red-ish */
-    border-color: #ef4444;
+    border-left: 6px solid #ef4444;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, var(--bg-panel) 100%);
 }
-.match-card.loss .match-decoration {
-    background: linear-gradient(90deg, #ef4444 0%, transparent 100%);
-}
-.match-card.loss .match-result-text {
-    color: #f87171;
-    font-weight: 700;
+.match-card.loss .match-result {
+    color: #ef4444;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 /* Match Card Info */

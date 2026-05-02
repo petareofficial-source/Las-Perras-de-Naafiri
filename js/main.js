@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('summoner-input');
     const regionSelect = document.getElementById('region-select');
 
+    // Manejar el envío del formulario de búsqueda
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!rawInput) return;
 
-        // Parse GameName and TagLine (e.g., "Nanami#LAS" -> ["Nanami", "LAS"])
+        // Separar el nombre del invocador y el tag (ej: "Nanami#LAS" -> ["Nanami", "LAS"])
         let gameName = rawInput;
         let tagLine = "";
 
@@ -23,28 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
             gameName = parts[0];
             tagLine = parts[1];
         } else {
-            // Default tagline if none provided
+            // Tag por defecto si el usuario no pone uno (usamos la región)
             tagLine = region;
         }
 
-        // Animar el botón mientras busca
+        // Animación de carga en el botón de búsqueda
         const btn = form.querySelector('.search-btn');
         const originalIcon = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
         btn.disabled = true;
 
         try {
-            // Llamar a la API
-            // Redirigir a la vista de perfil
+            // Redirigir a la página de perfil pasando los parámetros en la URL
+            // El profile.js se encargará de leer estos datos y llamar al proxy
             window.location.href = `profile.html?region=${encodeURIComponent(region)}&name=${encodeURIComponent(gameName)}&tag=${encodeURIComponent(tagLine)}`;
             
         } catch (error) {
-            console.error("Error buscando invocador:", error);
-            alert("No se pudo conectar con el Proxy de Riot o el invocador no existe.");
+            console.error("Error en la búsqueda:", error);
+            alert("No se pudo conectar con el servidor. Revisa que el Proxy esté encendido.");
         } finally {
-            // Restaurar botón
+            // Restaurar el estado del botón
             btn.innerHTML = originalIcon;
             btn.disabled = false;
         }
     });
 });
+
