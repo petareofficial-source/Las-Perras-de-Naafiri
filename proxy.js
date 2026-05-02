@@ -9,14 +9,19 @@ const app = express();
 const PORT = 3000;
 
 // CONFIGURACIÓN MONGODB
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/las-perras-de-naafiri";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI)
-    .then(() => console.log('[DB] Conectado a MongoDB'))
-    .catch(err => console.error('[DB] Error de conexión:', err));
+    .then(() => console.log('[DB] Conectado a MongoDB (Nube/Local)'))
+    .catch(err => console.error('[DB] Error de conexión a MongoDB. Revisa tu archivo .env:', err.message));
 
-// CONFIGURACIÓN: Pega aquí tu API Key de Riot Games
-const RIOT_API_KEY = process.env.RIOT_API_KEY || "RGAPI-2d49451d-667e-4ca4-80c2-4f8e4f968db6";
+// API KEY DE RIOT (Desde .env)
+const RIOT_API_KEY = process.env.RIOT_API_KEY;
+
+if (!RIOT_API_KEY) {
+    console.error('[Error] No se encontró la RIOT_API_KEY en el archivo .env');
+    process.exit(1);
+}
 
 app.use(cors());
 app.use(express.json());
