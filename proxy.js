@@ -12,6 +12,9 @@ const RIOT_API_KEY = process.env.RIOT_API_KEY || "RGAPI-2d49451d-667e-4ca4-80c2-
 app.use(cors());
 app.use(express.json());
 
+// Servir archivos estáticos del frontend
+app.use(express.static(__dirname));
+
 /**
  * Utilidad para obtener la URL de ruteo de Riot (Regional)
  */
@@ -127,6 +130,27 @@ app.get('/api/mastery/:region/:puuid', async (req, res) => {
     } catch (error) {
         console.error('Error en /mastery:', error.response?.data || error.message);
         res.status(500).json({ error: 'Error al obtener maestrías' });
+    }
+});
+
+/**
+ * ENDPOINT: Obtener partida en vivo (Spectator-V5)
+ */
+app.get('/api/spectator/:region/:puuid', async (req, res) => {
+    const { region, puuid } = req.params;
+    const platformUrl = getPlatformUrl(region);
+
+    try {
+        const spectatorUrl = `https://${platformUrl}.api.riotgames.com/lol/spectator/v5/active-games/by-summoner/${puuid}?api_key=${RIOT_API_KEY}`;
+        const response = await axios.get(spectatorUrl);
+        res.json(response.data);
+    } catch (error) {
+        // 404 significa que no está en partida, no es un error crítico
+        if (error.response?.status === 404) {
+            return res.json({ inGame: false });
+        }
+        console.error('Error en /spectator:', error.response?.data || error.message);
+        res.status(500).json({ error: 'Error al obtener partida en vivo' });
     }
 });
 
